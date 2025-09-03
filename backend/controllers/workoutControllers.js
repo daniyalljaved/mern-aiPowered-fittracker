@@ -8,6 +8,15 @@ export const getWorkout = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 }
+ export const getOneWorkout= async (req, res) => {
+  try {
+    const workout = await Workout.findOne({ _id: req.params.id, user: req.user.id });
+    if (!workout) return res.status(404).json({ msg: "Workout not found" });
+    res.json(workout);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 export const createWorkout = async (req, res) => {
     try {
         const { title, type, exercises, notes } = req.body;
