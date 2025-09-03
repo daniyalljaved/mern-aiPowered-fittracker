@@ -1,5 +1,6 @@
 import express from 'express';
 import authRouter from './routes/authroute.js'; 
+import workoutRouter from './routes/workoutroutes.js';
 const app=express();
 import dotenv from 'dotenv';
 import connectDB from './db.js';
@@ -10,6 +11,7 @@ const port=process.env.PORT ;
 
 app.use(express.json());
 app.use('/api/auth',authRouter);
+app.use('/api/workout',workoutRouter);
 
 
 
